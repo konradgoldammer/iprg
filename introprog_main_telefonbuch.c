@@ -18,8 +18,6 @@ void find_and_print(bstree* bst, int phone) {
     }
 }
 
-
-
 // Debug Ausgabe: Erstellt eine Bilddatei, die den ggw. Baum visualisiert.
 void debug(bstree *bst) {
     printf("Erstelle zur Visualisierung die Datei 'baum.dot'...");

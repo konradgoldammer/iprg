@@ -11,6 +11,35 @@
  * gleich (<=) und alle rechten Kinder einen Wert größer (>) haben.
  */
 void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
+    bst_node *newNode = malloc(sizeof(bst_node));
+    newNode->phone = phone;
+    printf("%s\n", name);
+    newNode->name = name;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    bst->count = bst->count + 1;
+    if (bst->count == 1) {
+        bst->root = newNode;
+        newNode->parent = NULL;
+        return;
+    }
+    // bst_node *refNode = malloc(sizeof(bst_node));
+    bst_node *refNode = bst->root;
+    while (1) {
+        if (phone < refNode->phone) {
+            if (refNode->left == NULL) {
+            refNode->left = newNode;
+                break;
+            }
+            refNode = refNode->left;
+        } else {
+            if (refNode->right == NULL) {
+                refNode->right = newNode;
+                break;
+            }
+            refNode = refNode->right;
+        }
+    }
 }
 
 /*
@@ -19,10 +48,27 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
  * NULL zurückgegeben.
  */
 bst_node* find_node(bstree* bst, unsigned long phone) {
+    // bst_node *refNode = malloc(sizeof(bst_node));
+    bst_node *refNode = bst->root;
+    while(refNode != NULL) {
+        if (phone < refNode->phone) {
+            refNode = refNode->left;
+        } else if (phone > refNode->phone) {
+            refNode = refNode->right;
+        } else if (phone == refNode->phone) {
+            return refNode;
+        }
+    }
+    return NULL;
 }
 
 /* Gibt den Unterbaum von node in "in-order" Reihenfolge aus */
 void bst_in_order_walk_node(bst_node* node) {
+    if (node != NULL) {
+        bst_in_order_walk_node(node->left);
+        print_node(node);
+        bst_in_order_walk_node(node->right);
+    }
 }
 
 /* 
@@ -42,6 +88,13 @@ void bst_in_order_walk(bstree* bst) {
  * Knoten gelöscht.
  */
 void bst_free_subtree(bst_node* node) {
+    if (node->left != NULL) {
+        bst_free_subtree(node->left);
+    }
+    if (node->right != NULL) {
+        bst_free_subtree(node->right);
+    }
+    free(node);
 }
 
 /* 
