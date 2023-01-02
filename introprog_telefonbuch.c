@@ -32,19 +32,21 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
     while (1) {
         if (phone < refNode->phone) {
             if (refNode->left == NULL) {
-            refNode->left = newNode;
+                refNode->left = newNode;
+                newNode->parent = refNode;
                 break;
             }
             refNode = refNode->left;
         } else if (phone > refNode->phone) {
             if (refNode->right == NULL) {
                 refNode->right = newNode;
+                newNode->parent = refNode;
                 break;
             }
             refNode = refNode->right;
         }
     }
-    free(refNode);
+    // free(refNode);
 }
 
 /*
