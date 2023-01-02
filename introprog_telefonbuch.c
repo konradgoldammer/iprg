@@ -17,7 +17,7 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
     bst_node *newNode = calloc(1, sizeof(bst_node));
     newNode->phone = phone;
     printf("%s\n", name);
-    newNode->name = malloc(sizeof(strlen));
+    newNode->name = calloc(1, sizeof(strlen));
     strcpy(newNode->name, name);
     newNode->left = NULL;
     newNode->right = NULL;
