@@ -27,7 +27,7 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
         newNode->parent = NULL;
         return;
     }
-    bst_node *refNode = malloc(sizeof(bst_node));
+    bst_node *refNode = calloc(1, sizeof(bst_node));
     refNode = bst->root;
     while (1) {
         if (phone < refNode->phone) {
@@ -44,6 +44,7 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
             refNode = refNode->right;
         }
     }
+    free(refNode);
 }
 
 /*
@@ -53,7 +54,7 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
  */
 bst_node* find_node(bstree* bst, unsigned long phone) {
     // bst_node *refNode = malloc(sizeof(bst_node));
-    bst_node *refNode = malloc(sizeof(bst_node));
+    bst_node *refNode = calloc(1, sizeof(bst_node));
     refNode = bst->root;
     while(refNode != NULL) {
         if (phone < refNode->phone) {
