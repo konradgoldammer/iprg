@@ -11,10 +11,14 @@
  * gleich (<=) und alle rechten Kinder einen Wert größer (>) haben.
  */
 void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
+    if (find_node(bst, phone) != NULL) {
+        return;
+    }
     bst_node *newNode = malloc(sizeof(bst_node));
     newNode->phone = phone;
     printf("%s\n", name);
-    newNode->name = name;
+    // newNode->name = name;
+    strcpy(newNode->name, name);
     newNode->left = NULL;
     newNode->right = NULL;
     bst->count = bst->count + 1;
@@ -32,7 +36,7 @@ void bst_insert_node(bstree* bst, unsigned long phone, char *name) {
                 break;
             }
             refNode = refNode->left;
-        } else {
+        } else if (phone > refNode->phone) {
             if (refNode->right == NULL) {
                 refNode->right = newNode;
                 break;
