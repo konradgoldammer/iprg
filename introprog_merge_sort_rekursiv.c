@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "introprog_input_merge_sort.h"
-#include <math.h>
 
 /*
  * Diese Funktion fügt zwei bereits sortierte Arrays zu einem
@@ -62,7 +61,8 @@ void merge_sort(int* array, int first, int last)
 {
   // HIER Funktion merge_sort() implementieren
   if (first < last) {
-    int q = (int)floor((first + last) / 2);
+    // int q = (int)floor((first + last) / 2);
+    int q = (first + last) / 2;
     merge_sort(array, first, q);
     merge_sort(array, q + 1, last);
     merge(array, first, q, last);
