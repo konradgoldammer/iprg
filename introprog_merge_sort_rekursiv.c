@@ -46,6 +46,8 @@ void merge(int* array, int first, int middle, int last)
     array[first + j - 1] = b[j];
     j++;
   }
+
+  free(b);
 }
 
 /*
@@ -100,6 +102,8 @@ int main (int argc, char *argv[])
 
     printf("Sortiert:\n");
     print_array(array, len);
+
+    free(array);
 
     return 0;
 }
