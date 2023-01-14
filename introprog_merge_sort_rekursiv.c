@@ -15,7 +15,7 @@
 void merge(int* array, int first, int middle, int last)
 {
   // HIER Funktion merge() implementieren
-  int *b = malloc(sizeof (int) * (last - first + 1));
+  int *b = calloc(1, sizeof (int) * (last - first + 2));
   int k = first;
   int m = middle + 1;
   int i = 1;
@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
     char *filename = argv[2];
     
     // Hier array initialisieren
-    int *array = malloc(sizeof (int) * atoi(argv[1]));
+    int *array = calloc(1, sizeof (int) * atoi(argv[1]) + 1);
     
     int len = read_array_from_file(array, atoi(argv[1]), filename);
 
