@@ -98,7 +98,7 @@ int main (int argc, char *argv[])
     print_array(array, len);
 
     // HIER Aufruf von "merge_sort()"
-    merge_sort(array, 0, atoi(argv[1]) - 1);
+    merge_sort(array, 0, len - 1);
 
     printf("Sortiert:\n");
     print_array(array, len);
